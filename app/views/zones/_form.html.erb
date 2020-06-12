@@ -1,0 +1,55 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+        <%= form_with(model: zone, local: true) do |form| %>
+          <% if zone.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(zone.errors.count, "error") %> prohibited this zone from being saved:</h2>
+
+              <ul>
+              <% zone.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= form.label :city_name %>
+            <%= form.text_area :city_name %>
+          </div>
+
+          <div class="field">
+            <%= form.label :value %>
+            <%= form.text_area :value %>
+          </div>
+
+          <div class="field">
+            <%= form.label :abbr %>
+            <%= form.text_area :abbr %>
+          </div>
+
+          <div class="field">
+            <%= form.label :offset %>
+            <%= form.text_field :offset %>
+          </div>
+
+          <div class="field">
+            <%= form.label :isdst %>
+            <%= form.check_box :isdst %>
+          </div>
+
+          <div class="field">
+            <%= form.label :text %>
+            <%= form.text_area :text %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

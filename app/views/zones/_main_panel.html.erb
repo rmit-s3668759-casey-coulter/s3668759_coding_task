@@ -1,0 +1,72 @@
+<div class="column is-half">
+	<article class="media">
+		<div class="media-content has-text-centered">
+			<p>Scroll bar</p>
+		</div>
+	</article>
+
+	<% default_zone = Time.now.getutc + @zones.first.offset.hours %>
+
+	<% @zones.order('created_at DESC').each do | zone | %>
+	<% time = Time.now.getutc + zone.offset.hours %>
+	<% time.to_formatted_s(:time) %>
+	<% time_diff = zone.offset - @zones.first.offset %>
+	<% time_day = default_zone.to_date - time.to_date %>
+		<article class="media">
+			<div class="media-left">
+				<p class="is-size-3"> <%= zone.city_name %> </p>
+				<% if time_diff > 0 %>
+					<p class="is-size-5"> +<%= time_diff %> hours</p>
+				<% else %>
+					<p class="is-size-5"> <%= time_diff %> hours</p>
+				<% end %>
+			</div>
+
+			<div class="media-content">
+				<div class="content has-text-right">
+					<p class="is-size-3">
+						<%= time.strftime("%I:%M %p") %>
+					</p>
+					<% if default_zone.to_date == time.to_date %>
+						Today
+					<% elsif default_zone.to_date > time.to_date %>
+						Yesterday
+					<% elsif default_zone.to_date < time.to_date %>
+						Tomorrow
+					<% end %>
+					<% if time.hour >= 9 && time.hour <= 17 %>
+						<span class="icon has-text-success">
+							<i class="fas fa-circle"></i>
+						</span>
+					<% elsif time.hour >= 18 && time.hour <= 19 %>
+						<span class="icon has-text-warning">
+							<i class="fas fa-circle"></i>
+						</span>
+					<% elsif time.hour == 8 || (time.hour >= 20 && time.hour <= 22) %>
+						<span class="icon has-text-danger">
+							<i class="fas fa-circle"></i>
+						</span>
+					<% elsif time.hour == 23 || time.hour <= 7 %>
+						<span class="icon">
+							<i class="fas fa-moon"></i>
+						</span>
+					<% end %>
+				</div>
+			</div>
+
+			<div class="media-right">
+				<%= link_to zone, method: :delete, data: { confirm: "Are you sure you want to delete this timezone?" } do %>
+					<button class="delete"></button>
+				<% end %>
+			</div>
+		</article>
+	<% end %>
+
+	<article class="media">
+		<div class="media-content has-text-centered">
+			<span class="icon ">
+	  			<%= link_to ('<i class="fas fa-plus"></i>').html_safe, new_zone_path %>
+			</span>
+		</div>
+	</article>
+</div>

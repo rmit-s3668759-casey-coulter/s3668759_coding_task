@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @utc.country %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @utc.city %>
+</p>
+
+<%= link_to 'Edit', edit_utc_path(@utc) %> |
+<%= link_to 'Back', utcs_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: MyText
+  abbr: MyText
+  offset: 1.5
+  isdst: false
+  text: MyText
+
+two:
+  value: MyText
+  abbr: MyText
+  offset: 1.5
+  isdst: false
+  text: MyText

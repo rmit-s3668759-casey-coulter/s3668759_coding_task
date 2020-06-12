@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clock+</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+      <div class="notification is-primary global-notification">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-danger global-notification">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+    <nav class="navbar is-light">
+      <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do %>
+        <h1 class="title is-4">Clock+</h1>
+      <% end %>
+      <div class="navbar-burger burger" data-target="navbarExample">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+     </div>
+
+      <div id="navbarExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <%= link_to 'Showcase', root_path, class: "button is-info" %>
+            </p>
+            <p class="control">
+              <%= mail_to 's3668759@student.rmit.edu.au', 'Contact Us', class: "button is-info" %>
+            </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <%= yield %>
+
+    <footer class="footer">
+      <div class="columns">
+        <div class="column has-text-left">
+          <p>
+            Clock+
+          </p>
+          <p>
+            <strong>Email:</strong>
+            s3668759@student.rmit.edu.au
+          </p>
+          <p>
+            <strong>Attempt Grade Level</strong>
+            Distinction LEVEL
+          </p>
+        </div>
+        <div class="column has-text-right">
+          <p>Share Social</p>
+          <span class="icon is-large">
+            <%= link_to ('<i class="fab fa-facebook-square"></i>').html_safe, "https://www.facebook.com" %>
+          </span>
+          <span class="icon is-large">
+            <%= link_to ('<i class="fab fa-twitter"></i>').html_safe, "https://www.twitter.com" %>
+          </span>
+          <span class="icon is-large">
+            <%= link_to ('<i class="fab fa-linkedin"></i>').html_safe, "https://linkedin.com" %>
+          </span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
